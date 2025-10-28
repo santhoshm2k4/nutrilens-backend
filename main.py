@@ -129,7 +129,9 @@ def read_user_profile(
 def read_root():
     return {"message": "Hello, NutriLens Backend!"}
 
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+# Set tesseract path only for local Windows dev; Render (Linux) will use default
+if os.name == "nt":  
+    pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 async def analyze_text_with_groq(text: str, profile: models.Profile = None):
     
