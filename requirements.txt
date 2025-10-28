@@ -8,9 +8,4 @@ passlib[bcrypt]==1.7.4
 argon2-cffi==23.1.0
 python-jose==3.3.0
 python-dotenv==1.2.1
-opencv-python==4.9.0
-pillow==10.2.0
-requests==2.31.0
-mysqlclient==2.2.7
 opencv-python==4.10.0.84
-
