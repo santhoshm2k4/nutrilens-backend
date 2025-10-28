@@ -8,6 +8,8 @@ from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 import json
 import os
+import pytesseract
+
 
 # Import all your new modules
 import crud
@@ -22,6 +24,12 @@ import numpy as np
 import pytesseract
 from dotenv import load_dotenv
 from groq import AsyncGroq
+
+
+try:
+    pytesseract.get_tesseract_version()
+except (EnvironmentError, pytesseract.TesseractNotFoundError):
+    print("⚠️ Tesseract is not installed in this environment. OCR features will not work.")
 
 # Load environment variables from .env file
 load_dotenv()
@@ -232,3 +240,6 @@ async def analyze_label(file: UploadFile = File(...)):
         return json_analysis
     except json.JSONDecodeError:
         raise HTTPException(status_code=500, detail="AI returned malformed data.")
+
+
+
